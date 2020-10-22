@@ -1,14 +1,22 @@
 package com.mdeigs.group4.iteratorpattern.cre;
 
+import com.mdeigs.group4.iteratorpattern.cre.domain.CreUser;
 import com.mdeigs.group4.iteratorpattern.shared.Iterator;
 
-public class InverseCreIterator implements Iterator {
-    private final Cre cre;
-    private int position;
+import java.util.List;
+import java.util.stream.Collectors;
 
-    public InverseCreIterator(Cre cre) {
-        this.cre = cre;
-        this.position = this.cre.getCreUsers().size() - 1;
+public class InverseCreIterator implements Iterator {
+    private int position;
+    private final List<CreUser> creUsers;
+
+    public InverseCreIterator() {
+        this.creUsers = CreApi.getCREInfo()
+                .entrySet()
+                .stream()
+                .map(entry -> new CreUser(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toList());
+        this.position = this.creUsers.size() - 1;
     }
 
     @Override
@@ -18,6 +26,6 @@ public class InverseCreIterator implements Iterator {
 
     @Override
     public String currentItem() {
-        return this.cre.getCreUsers().get(this.position--).getUserData().toString();
+        return this.creUsers.get(this.position--).getUserData().toString();
     }
 }

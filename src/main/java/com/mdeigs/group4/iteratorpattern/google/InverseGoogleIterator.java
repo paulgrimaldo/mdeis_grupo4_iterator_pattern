@@ -1,15 +1,16 @@
 package com.mdeigs.group4.iteratorpattern.google;
 
+import com.mdeigs.group4.iteratorpattern.google.domain.GoogleUser;
 import com.mdeigs.group4.iteratorpattern.shared.Iterator;
 
 public class InverseGoogleIterator implements Iterator {
 
-    private final Google google;
+    private final GoogleUser[] googleUsers;
     private int position;
 
-    public InverseGoogleIterator(Google google) {
-        this.google = google;
-        this.position = this.google.getGoogleUsers().length - 1;
+    public InverseGoogleIterator() {
+        this.googleUsers = GoogleApi.getGoogleUsers();
+        this.position = this.googleUsers.length - 1;
     }
 
     @Override
@@ -19,6 +20,6 @@ public class InverseGoogleIterator implements Iterator {
 
     @Override
     public String currentItem() {
-        return this.google.getGoogleUsers()[this.position--].toString();
+        return this.googleUsers[this.position--].toString();
     }
 }

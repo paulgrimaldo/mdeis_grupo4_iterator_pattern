@@ -1,15 +1,18 @@
 package com.mdeigs.group4.iteratorpattern.facebook;
 
+import com.mdeigs.group4.iteratorpattern.facebook.domain.FacebookUser;
 import com.mdeigs.group4.iteratorpattern.shared.Iterator;
+
+import java.util.List;
 
 public class InverseFacebookIterator implements Iterator {
 
-    private final Facebook facebook;
+    private final List<FacebookUser> facebookUsers;
     private int position;
 
-    public InverseFacebookIterator(Facebook facebook) {
-        this.facebook = facebook;
-        this.position = this.facebook.getFacebookUsers().size() - 1;
+    public InverseFacebookIterator() {
+        this.facebookUsers = FacebookApi.getFacebookUsers();
+        this.position = this.facebookUsers.size() - 1;
     }
 
     @Override
@@ -19,6 +22,6 @@ public class InverseFacebookIterator implements Iterator {
 
     @Override
     public String currentItem() {
-        return this.facebook.getFacebookUsers().get(this.position--).toString();
+        return this.facebookUsers.get(this.position--).toString();
     }
 }

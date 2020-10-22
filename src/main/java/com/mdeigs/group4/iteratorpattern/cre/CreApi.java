@@ -5,8 +5,8 @@ import com.mdeigs.group4.iteratorpattern.cre.domain.UserData;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CREApi {
-    private CREApi() {
+public class CreApi {
+    private CreApi() {
     }
 
     public static Map<Integer, UserData> getCREInfo() {

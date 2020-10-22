@@ -1,24 +1,27 @@
 package com.mdeigs.group4.iteratorpattern.facebook;
 
+import com.mdeigs.group4.iteratorpattern.facebook.domain.FacebookUser;
 import com.mdeigs.group4.iteratorpattern.shared.Iterator;
+
+import java.util.List;
 
 public class FacebookIterator implements Iterator {
 
-    private final Facebook facebook;
+    private final List<FacebookUser> facebookUsers;
     private int position;
 
-    public FacebookIterator(Facebook facebook) {
-        this.facebook = facebook;
+    public FacebookIterator() {
+        this.facebookUsers = FacebookApi.getFacebookUsers();
         this.position = 0;
     }
 
     @Override
     public boolean isDone() {
-        return this.position >= this.facebook.getFacebookUsers().size();
+        return this.position >= this.facebookUsers.size();
     }
 
     @Override
     public String currentItem() {
-        return this.facebook.getFacebookUsers().get(this.position++).toString();
+        return this.facebookUsers.get(this.position++).toString();
     }
 }
